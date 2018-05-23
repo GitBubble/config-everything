@@ -1,0 +1,34 @@
+#!/bin/bash
+
+echo "==Hello,There,Now the Script begin to install=="
+echo "currently ,we only support AARM64 automated support"
+
+
+echo "hi,i am the executing script:wq"
+
+
+tar xf AI_PACK.tar
+
+
+
+cd ai-pack
+gunzip python-dep.list.gz
+gunzip tensorflow-1.4.0rc0-cp27-cp27mu-linux_aarch64.whl.gz
+gunzip -r python-all
+
+
+IFS=$'\r\n' GLOBIGNORE='*' command eval 'xyc=($(cat python-dep.list))'
+
+cd python-all
+
+for pkg in "${xyc[@]}"
+do
+   dpkg -i "${pkg}"
+done
+
+
+cd ..
+
+
+pip install tensorflow-1.4.0rc0-cp27-cp27mu-linux_aarch64.whl
+ 

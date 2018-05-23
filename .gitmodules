@@ -1,3 +1,3 @@
 [submodule "distro/boot"]
 	path = distro/boot
-	url = https://github.com/GitBubble/system_auto_deploy.git
+	url = https://github.com/GitBubble/system_auto_deploy

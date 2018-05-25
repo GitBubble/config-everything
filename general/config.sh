@@ -7,7 +7,7 @@ tar xzvf v1.8.2.tar.gz
 cd ninja-1.8.2
 ./configure.py --bootstrap
 cp ninja /usr/bin/
-
+cd ..
 cp ./vim/release_vimrc ~/.vimrc
 
 # ready install

@@ -10,6 +10,7 @@ cp ninja /usr/bin/
 cd ..
 cp ./vim/release_vimrc ~/.vimrc
 
+echo "********please ignore the error ,hit Enter！********"
 # ready install
 vim +PluginInstall +qall
 

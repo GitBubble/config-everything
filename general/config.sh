@@ -18,3 +18,9 @@ vim +PluginInstall +qall
 cd ~/.vim/bundle/YouCompleteMe
 ./install.py  --clang-completer   --java-completer
 cp ~/.vim/bundle/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py ~/
+
+cd ~/.vim/bundle/ctags/
+./autogen.sh
+./configure prefix=/usr/bin
+make -j64
+make install

@@ -96,8 +96,8 @@ Bundle 'gmarik/vundle'
 " "
 " " original repos on github
 Plugin 'FelikZ/ctrlp-py-matcher'
-Plugin "flazz/vim-colorschemes"
-Plugin "skywind3000/vimmake"
+Plugin 'flazz/vim-colorschemes'
+Plugin 'skywind3000/vimmake'
 Plugin 'kien/ctrlp.vim'
 Plugin 'sukima/xmledit'
 Plugin 'sjl/gundo.vim'

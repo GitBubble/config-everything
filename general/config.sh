@@ -9,7 +9,9 @@ cd ninja-1.8.2
 cp ninja /usr/bin/
 cd ..
 cp ./vim/release_vimrc ~/.vimrc
-
+cp ./tmux/tmux.conf ~/.tmux.conf
+# reboot all tmux process
+tmux kill-server
 echo "********please ignore the error ,hit Enter！********"
 # ready install
 vim +PluginInstall +qall

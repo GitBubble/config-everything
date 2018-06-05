@@ -6,7 +6,7 @@ tmux source ~/.tmux.conf
 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # YCM need ninja... (the python install script in ninja provide another way to install 
-wget https://github.com/ninja-build/ninja/archive/v1.8.2.tar.gz
+wget https://github.com/ninja-build/ninja/archive/v1.8.2.tar.gz --no-check-certificate
 tar xzvf v1.8.2.tar.gz
 cd ninja-1.8.2
 ./configure.py --bootstrap

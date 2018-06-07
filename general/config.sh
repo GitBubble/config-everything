@@ -16,6 +16,7 @@ cd ..
 cp ./vim/release_vimrc ~/.vimrc
 cp ./tmux/tmux.conf ~/.tmux.conf
 cp import_symbol.sh /usr/bin/
+sudo chmod 777 /usr/bin/import_symbol.sh
 # reboot all tmux process
 tmux kill-server
 echo "********please ignore the error ,hit Enter！********"

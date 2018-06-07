@@ -456,3 +456,22 @@ call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
 call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
 call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 "-----------NERDTREE END--------------
+
+
+" remaping searching function for cscope
+if has("cscope")
+    "set current directory as cscope root directory
+    cs add ./
+
+    nnoremap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+    nnoremap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+    nnoremap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+
+    " remapping quick call back
+    nnoremap <F5> :cs find c <C-R>=expand("<cword>")<CR><CR>
+endif

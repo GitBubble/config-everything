@@ -12,6 +12,6 @@
 - ctrl+n   : toggle nerdtree    
 - enter    : toggle symbol list  
 - cs find <tab> : find file or symbol in source  
-   -- cs find s : find symbol   
-   -- cs find g : find global   
-   -- cs find f : find file   
+   -- cs find s : find symbol    
+   -- cs find g : find global     
+   -- cs find f : find file    

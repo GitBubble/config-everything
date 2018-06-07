@@ -27,6 +27,6 @@ cp ~/.vim/bundle/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py ~/
 
 cd ~/.vim/bundle/ctags/
 ./autogen.sh
-./configure prefix=/usr/bin
+./configure prefix=/usr
 make -j64
 make install

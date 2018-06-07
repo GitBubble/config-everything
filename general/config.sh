@@ -1,5 +1,6 @@
 #! /bin/bash
 # get tmux done
+apt install cscope
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 tmux source ~/.tmux.conf
 

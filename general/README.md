@@ -5,7 +5,8 @@
 
 ##STEP2: Create Project  
 - enter your project directory  
-- bash import_symbol.sh  
+- bash import_symbol.sh
+- start vim
 
 ##HELP
  

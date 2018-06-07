@@ -15,6 +15,7 @@ cp ninja /usr/bin/
 cd ..
 cp ./vim/release_vimrc ~/.vimrc
 cp ./tmux/tmux.conf ~/.tmux.conf
+cp import_symbol.sh /usr/bin/
 # reboot all tmux process
 tmux kill-server
 echo "********please ignore the error ,hit Enter！********"

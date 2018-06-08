@@ -1,7 +1,9 @@
 ##  STEP1: INSTALL  
   
 - bash config.h  
+  
   notes:
+  
     * don't care about the warning when install .go ahead
 
 

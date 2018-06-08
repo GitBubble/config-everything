@@ -416,8 +416,20 @@ inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 autocmd FileType elixir nnoremap <buffer> <leader>h :call alchemist#exdoc()<CR>
 autocmd FileType elixir nnoremap <buffer> <leader>d :call alchemist#exdef()<CR>
 
+set number relativenumber
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
 
 "-----------NERDTREE START--------------
+
+" enable line numbers
+let NERDTreeShowLineNumbers=1
+" make sure relative line numbers are used
+autocmd FileType nerdtree setlocal relativenumber
+
 " Nerd auto open
 autocmd VimEnter * NERDTree
 wincmd w

@@ -32,15 +32,17 @@
      * ctrl+b  n  : switch to next window
      * ctrl+b  c  : create a new window
      * ctrl+b  d  : dettach from current session
-     * ctrl+b     :  kill-server : kill all tmux servers
-     * exit       : kill current window
+     * ctrl+b     :  kill-server  kill all tmux servers
+     * exit       : kill current window (i think this one is the most convinient)
      * ctrl+b &   : kill current window
+     * ctrl+b x   : kill current window
      * ctrl+b f   : find text in current window
      * ctrl+b space : switch default layout : even-horizontal、even-vertical、main-horizontal、main-vertical、tiled
      * ctrl+b q   : display sequence id of current pane in current window
      * ctrl+b ctrl+o : transpose the current pane
      * ctrl+b .   : rename the index in the pane
      * ctrl+b w   : list all window and switch your target
+     * ctrl+b down-arrow : adjust top/down pane size
 
 ## UPDATE
 

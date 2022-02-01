@@ -1,0 +1,254 @@
+"""""""""""""""""""""""""""""""""""""
+" Arthur Vimrc configuration 
+"""""""""""""""""""""""""""""""""""""
+set nocompatible
+syntax on
+set nowrap
+set encoding=utf8
+set autowrite
+
+
+" no swp files
+set nobackup
+set nowritebackup
+set noswapfile
+
+
+" Send more characters for redraws
+set ttyfast
+" Enable mouse use in all modes
+set mouse=a
+" Set this to the name of your terminal that supports mouse codes.
+" Must be one of: xterm, xterm2, netterm, dec, jsbterm, pterm
+set ttymouse=xterm2
+
+
+" Disable file type for vundle
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+call plug#begin()
+
+" Utility
+Plug 'scrooloose/nerdtree'
+Plug 'majutsushi/tagbar'
+
+" Generic Programming Support 
+Plug 'universal-ctags/ctags'
+Plug 'honza/vim-snippets'
+
+
+" Markdown / Writting
+Plug 'reedes/vim-pencil'
+Plug 'godlygeek/tabular'
+Plug 'preservim/vim-markdown'
+
+" Elm Support
+"Plugin 'lambdatoast/elm.vim'
+
+" Theme / Interface
+"Plugin 'AnsiEsc.vim'
+Plug 'ryanoasis/vim-devicons'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'ajh17/Spacegray.vim'
+
+
+" OSX stupid backspace fix
+set backspace=indent,eol,start
+
+call plug#end()
+
+filetype plugin indent on
+
+"""" END Vundle Configuration 
+
+"""""""""""""""""""""""""""""""""""""
+" Configuration Section
+"""""""""""""""""""""""""""""""""""""
+
+" Show linenumbers
+set number
+set ruler
+
+" Set Proper Tabs
+set tabstop=4
+set shiftwidth=4
+set smarttab
+set expandtab
+
+" Always display the status line
+set laststatus=2
+
+" Enable Elite mode, No ARRRROWWS!!!!
+let g:elite_mode=1
+
+" Enable highlighting of the current line
+set cursorline
+
+" Theme and Styling 
+set t_Co=256
+set background=dark
+
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+let base16colorspace=256  " Access colors present in 256 colorspace
+"colorscheme spacegray
+" colorscheme spacemacs-theme
+ 
+let g:spacegray_underline_search = 1
+let g:spacegray_italicize_comments = 1
+
+" Vim-Airline Configuration
+"let g:airline"extensions"tabline"enabled = 1
+"let g:airline_powerline_fonts = 1 
+"let g:airline_theme='hybrid'
+"let g:hybrid_custom_term_colors = 1
+"let g:hybrid_reduced_contrast = 1 
+"
+" YCM config
+" let g:ycm_global_ycm_extra_conf = '.ycm_extra_conf.py'
+
+"-----------TMUX SETTINGS--------------
+let g:tmux_navigator_save_on_switch = 2
+
+"---------GIT SETTINGS-------------
+
+" Neomake settings
+
+
+" Markdown Syntax Support
+augroup markdown
+    au!
+    au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
+augroup END
+
+" Github Issues Configuration
+"let g:github_access_token = "e6fb845bd306a3ca7f086cef82732d1d5d9ac8e0"
+
+
+" Vim-Supertab Configuration
+" let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+
+" Settings for Writting
+
+" Vim-pencil Configuration
+augroup pencil
+  autocmd!
+  autocmd FileType markdown,mkd call pencil#init()
+  autocmd FileType text         call pencil#init()
+augroup END
+
+" Vim-UtilSnips Configuration
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+"let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsJumpForwardTrigger="<c-b>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+"let g:UltiSnipsEditSplit="vertical" " If you want :UltiSnipsEdit to split your window.
+
+
+
+"""""""""""""""""""""""""""""""""""""
+" Mappings configurationn
+"""""""""""""""""""""""""""""""""""""
+map <C-n> :NERDTreeToggle<CR>
+map <C-m> :TagbarToggle<CR>
+
+
+
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+
+" Mapping selecting Mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+" Shortcuts
+nnoremap <Leader>o :Files<CR> 
+nnoremap <Leader>O :CtrlP<CR>
+nnoremap <Leader>w :w<CR>
+
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+
+
+
+"-----------NERDTREE START--------------
+
+" enable line numbers
+let NERDTreeShowLineNumbers=1
+" make sure relative line numbers are used
+autocmd FileType nerdtree setlocal relativenumber
+
+" Nerd auto open
+autocmd VimEnter * NERDTree
+wincmd w
+autocmd VimEnter * wincmd w
+"
+" nerdtree enter without file
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"autocmd VimEnter * if argc() > 0 || exists("s:std_in") | wincmd p | endif
+
+
+" nerdtree exit when q, old techniques does't work anymore
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+function! CheckLeftBuffers()
+  if tabpagenr('$') == 1
+    let i = 1
+    while i <= winnr('$')
+      if getbufvar(winbufnr(i), '&buftype') == 'help' ||
+          \ getbufvar(winbufnr(i), '&buftype') == 'quickfix' ||
+          \ exists('t:NERDTreeBufName') &&
+          \   bufname(winbufnr(i)) == t:NERDTreeBufName ||
+          \ bufname(winbufnr(i)) == '__Tag_List__'
+        let i += 1
+      else
+        break
+      endif
+    endwhile
+    if i == winnr('$') + 1
+      qall
+    endif
+    unlet i
+  endif
+endfunction
+autocmd BufEnter * call CheckLeftBuffers()
+
+
+
+" nerdtree style
+let g:NERDTreeDirArrows = 1
+let g:NERDTreeDirArrowExpandable = '+'
+let g:NERDTreeDirArrowCollapsible = '-'
+let g:NERDTreeGlyphReadOnly = "RO"
+
+
+""-----------NERDTREE END--------------
+
+
+" remaping searching function for cscope
+if has("cscope")
+    "set current directory as cscope root directory
+    cs add ./
+
+    nnoremap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+    nnoremap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+    nnoremap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+
+    " remapping quick call back
+    nnoremap <F5> :cs find c <C-R>=expand("<cword>")<CR><CR>
+endif

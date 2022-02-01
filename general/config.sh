@@ -1,15 +1,16 @@
 #! /bin/bash
-# get tmux done
-apt install cscope
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+sudo apt install tmux
+sudo apt install cscope
+sudo apt install exuberant-ctags
+git clone --depth=1 https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 tmux source ~/.tmux.conf
 
 
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+git clone --depth=1 https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # YCM need ninja... (the python install script in ninja provide another way to install 
-wget https://github.com/ninja-build/ninja/archive/v1.8.2.tar.gz --no-check-certificate
-tar xzvf v1.8.2.tar.gz
-cd ninja-1.8.2
+wget https://github.com/ninja-build/ninja/archive/v1.10.2.tar.gz --no-check-certificate
+tar xzvf v1.10.2.tar.gz
+cd ninja-1.10.2
 ./configure.py --bootstrap
 cp ninja /usr/bin/
 cd ..
